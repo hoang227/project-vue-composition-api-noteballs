@@ -9,7 +9,7 @@
           :value="props.modelValue"
           @input="$emit('update:modelValue', $event.target.value)"
           class="textarea"
-          :placeholder="textArea"
+          :placeholder="placeholder"
           ref="textAreaRef"
         />
       </div>
@@ -43,9 +43,9 @@ const props = defineProps({
     type: String,
     default: 'success'
   },
-  textArea: {
+  placeholder: {
     type: String,
-    required: true
+    default: 'type something ...'
   }
 })
 
