@@ -1,0 +1,58 @@
+<template>
+  <div class="notes">
+    <AddEditNote v-model="newNote">
+      <template #buttons>
+        <button
+          @click="addNote"
+          :disabled="!newNote"
+          class="button is-link has-background-success"
+        >
+          add new note
+        </button>
+      </template>
+    </AddEditNote>
+    <pre>
+      {{ newNote }}
+    </pre>
+    <Note
+      v-for="note in storeNotes.notes"
+      :key="note.id"
+      :note="note"
+    />
+  </div>
+</template>
+
+<script setup>
+/*
+  imports
+*/
+
+import { ref } from 'vue';
+import Note from '@/components/notes/Note.vue'
+import AddEditNote from '@/components/notes/AddEditNote.vue'
+import { useStoreNotes } from '@/stores/storeNotes'
+
+/*
+  stores
+*/
+
+const storeNotes = useStoreNotes()
+
+
+/*
+  notes
+*/
+
+const newNote = ref('')
+const newNoteRef = ref(null)
+
+
+const addNote = () => {
+
+  storeNotes.addNote(newNote.value)
+
+  newNote.value = ''
+  newNoteRef.value.focus()
+}
+
+</script>
