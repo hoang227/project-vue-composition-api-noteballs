@@ -29,6 +29,7 @@
         id="navbarBasicExample"
         class="navbar-menu"
         :class="{ 'is-active': showMobileNav }"
+        ref="navbarMenuRef"
       >
 
         <div class="navbar-end">
@@ -60,12 +61,23 @@
   imports
 */
 import { ref } from 'vue';
+import { onClickOutside } from '@vueuse/core'
 
 /*
   mobile nav
 */
 
 const showMobileNav = ref(false)
+
+/*
+  click outside to close
+*/
+
+const navbarMenuRef = ref(null)
+
+onClickOutside(navbarMenuRef, event => {
+  showMobileNav.value = false
+})
 </script>
 
 <style>
