@@ -54,5 +54,5 @@ const loveNoteBalls = ref('')
   watch characters
 */
 
-useWatchCharacters(loveNoteBalls)
+useWatchCharacters(loveNoteBalls, 50)
 </script>
