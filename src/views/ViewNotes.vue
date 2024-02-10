@@ -1,6 +1,10 @@
 <template>
   <div class="notes">
-    <AddEditNote v-model="newNote">
+    <AddEditNote
+      v-model="newNote"
+      ref="addEditNoteRef"
+      placeholder="add a new note"
+    >
       <template #buttons>
         <button
           @click="addNote"
@@ -11,9 +15,6 @@
         </button>
       </template>
     </AddEditNote>
-    <pre>
-      {{ newNote }}
-    </pre>
     <Note
       v-for="note in storeNotes.notes"
       :key="note.id"
@@ -31,6 +32,7 @@ import { ref } from 'vue';
 import Note from '@/components/notes/Note.vue'
 import AddEditNote from '@/components/notes/AddEditNote.vue'
 import { useStoreNotes } from '@/stores/storeNotes'
+import { useWatchCharacters } from '@/use/useWatchCharacters'
 
 /*
   stores
@@ -44,15 +46,20 @@ const storeNotes = useStoreNotes()
 */
 
 const newNote = ref('')
-const newNoteRef = ref(null)
+const addEditNoteRef = ref(null)
 
 
 const addNote = () => {
 
   storeNotes.addNote(newNote.value)
-
   newNote.value = ''
-  newNoteRef.value.focus()
+  addEditNoteRef.value.focusTextarea()
 }
+
+/*
+  watch characters
+*/
+
+useWatchCharacters(newNote)
 
 </script>

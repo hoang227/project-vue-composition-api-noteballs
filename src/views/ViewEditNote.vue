@@ -1,5 +1,69 @@
 <template>
   <div class="edit-note">
-    <h1>edit note with an id of: {{ $route.params.id }}</h1>
+    <AddEditNote
+      v-model="noteContent"
+      bgColor="link"
+      ref="addEditNoteRef"
+      placeholder="edit note"
+      label="edit note"
+    >
+      <template #buttons>
+        <button
+          @click="$router.back()"
+          class="button is-link is-light mr-2"
+        >
+          cancel
+        </button>
+        <button
+          @click="handleSaveClicked"
+          class="button is-link has-background-link"
+          :disabled="!noteContent"
+        >
+          save note
+        </button>
+      </template>
+    </AddEditNote>
   </div>
 </template>
+
+<script setup>
+/*
+  imports
+*/
+
+import AddEditNote from '@/components/notes/AddEditNote.vue';
+import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useStoreNotes } from '@/stores/storeNotes'
+
+/*
+  router
+*/
+
+const route = useRoute()
+const router = useRouter()
+
+/*
+  store
+*/
+
+const storeNotes = useStoreNotes()
+
+/*
+  note
+*/
+
+const noteContent = ref('')
+
+noteContent.value = storeNotes.getNoteContent(route.params.id)
+
+/*
+  save clicked
+*/
+
+const handleSaveClicked = () => {
+  storeNotes.updateNote(route.params.id, noteContent.value)
+  router.push('/')
+}
+</script>
+

@@ -30,10 +30,12 @@
         id="navbarBasicExample"
         class="navbar-menu"
         :class="{ 'is-active': showMobileNav }"
+        ref="navbarMenuRef"
       >
 
         <div class="navbar-end">
           <RouterLink
+            @click="showMobileNav = false"
             to="/"
             class="navbar-item"
             active-class="is-active"
@@ -42,6 +44,7 @@
           </RouterLink>
 
           <RouterLink
+            @click="showMobileNav = false"
             to="/stats"
             class="navbar-item"
             active-class="is-active"
@@ -59,6 +62,7 @@
   imports
 */
 import { ref } from 'vue';
+import { onClickOutside } from '@vueuse/core'
 
 /*
   mobile nav

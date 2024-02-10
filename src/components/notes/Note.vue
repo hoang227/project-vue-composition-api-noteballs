@@ -12,13 +12,15 @@
       <RouterLink
         :to="`/editNote/${note.id}`"
         class="card-footer-item"
-      >Edit
+      >
+        Edit
       </RouterLink>
       <a
         @click.prevent="storeNotes.deleteNote(note.id)"
         href="#"
         class="card-footer-item"
-      >Delete
+      >
+        Delete
       </a>
     </footer>
   </div>
