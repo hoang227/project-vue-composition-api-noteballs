@@ -21,6 +21,7 @@
       >Delete
       </a>
     </footer>
+    <ModalDeleteNote v-if="modals.deleteNote" />
   </div>
 </template>
 
@@ -28,8 +29,9 @@
 /*
   imports
 */
-import { computed } from 'vue'
+import { computed, reactive } from 'vue'
 import { useStoreNotes } from '@/stores/storeNotes'
+import ModalDeleteNote from '@/components/notes/ModalDeleteNote.vue'
 
 /*
   props
@@ -56,5 +58,12 @@ const characterLength = computed(() => {
   return `${length} ${description}`
 })
 
+/*
+  modals
+*/
+
+const modals = reactive({
+  deleteNote: false
+})
 
 </script>
