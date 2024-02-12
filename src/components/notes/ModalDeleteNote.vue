@@ -15,7 +15,6 @@
       </header>
       <section class="modal-card-body">
         are you sure you want to delete this note ?
-        <pre>{{ noteId }}</pre>
       </section>
       <footer class="modal-card-foot is-justify-content-flex-end">
         <button
