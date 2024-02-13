@@ -22,6 +22,7 @@ export const useStoreAuth = defineStore('storeAuth', {
         } else {
           this.user = {}
           this.router.replace('/auth') // use replace instead of push so user cannot go back
+          storeNotes.clearNotes()
         }
       })
     },
