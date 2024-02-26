@@ -1,5 +1,7 @@
 # noteballs - Vue3 Composition API Note-Taking App
 
+![Development Status](https://img.shields.io/badge/status-complete-brightgreen)
+
 Welcome to NoteBalls, a simple and intuitive note-taking app built with Vue 3 Composition API, Vite, Pinia, and styled using Bulma. This project was created as part of my journey to learn and explore the features of Vue 3's Composition API.
 
 ## Features
